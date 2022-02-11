@@ -1,0 +1,104 @@
+<div class="card">
+  <div class="card-header">
+    <h3 class="text-left">Thêm mới tin tức</h3>
+  </div>
+  <div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Success!</strong> Dữ Liệu Được Thêm Mới Thành Công.
+    <button (click)="closeAlert()" type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form #addForm="ngForm" (ngSubmit)="onSubmit()" >
+    <div class="card-body">     
+      <div class="form-group col-md-12">
+        <label >Title<a id="sao">(*)</a></label>
+        <input type="text" required #name="ngModel" class="form-control" 
+          [class.is-invalid]="name.invalid && name.touched" [(ngModel)]="addModel.name" name="name">
+        <small class="form-text text-danger" [class.d-none]="name.valid || name.untouched">Yêu cầu điền thông
+          tin</small>
+      </div>
+
+      <div class="form-group col-md-12">
+        <label >Mô Tả</label>
+        <input type="text" required #description="ngModel" class="form-control" 
+          [class.is-invalid]="description.invalid && description.touched" [(ngModel)]="addModel.description" name="description">  
+      </div>
+
+      <div class="form-group col-12 ">
+        <label>Công Ty</label>
+        <input type="text" class="form-control" name="congty" placeholder="Công ty">
+        <small id="passwordHid" class="form-text text-muted"></small>
+      </div>
+
+      <div class="form-group col-12 ">
+        <label>Nội Dung</label>
+        <ckeditor #content="ngModel" [(ngModel)]="addModel.content" name="content"></ckeditor>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Kiểu Hiển Thị</label>
+          <select class="form-control">
+            <option>Tin Tức</option>
+            <option>Thông Báo</option>
+            <option>Slide Ảnh</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Kiểu Thông Báo</label>
+          <select class="form-control">
+            <option>Trước Khi Đăng Nhập</option>
+            <option>Sau Khi Đăng Nhập</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Bắt Đầu <a id="sao">(*)</a></label>
+          <input type="text" required #start="ngModel" class="form-control" name="start"
+            [class.is-invalid]="start.invalid && start.touched" [(ngModel)]="addModel.start" name="start">
+          <small class="form-text text-danger" [class.d-none]="start.valid || start.untouched">Yêu cầu điền thông
+            tin</small>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="name">Kết Thúc <a id="sao">(*)</a></label>
+          <input type="text" required #end="ngModel" class="form-control" name="end"
+            [class.is-invalid]="end.invalid && end.touched" [(ngModel)]="addModel.end" name="end">
+          <small class="form-text text-danger" [class.d-none]="end.valid || end.untouched">Yêu cầu điền thông
+            tin</small>
+        </div>
+      </div>
+
+      <div class="form-row ">
+        <div class="form-group col-md-2">Kích Hoạt
+          <input type="checkbox" />
+        </div>
+        <div class="form-group col-md-2">Cho phép hết hạn
+          <input type="checkbox" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="formFile" class="form-label">Đính Kèm<input class="form-control" type="file" id="formFile"></label>
+        </div>
+        <div class="form-group col-md-4">
+          <!-- <label for="formFile" class="form-label">Ảnh<input class="form-control" type="file" id="formFile"></label> -->
+          <img *ngFor='let url of urls' [src]="url" height="100" width="100"><br>
+          <input type="file" (change)="onselect($event)" multiple >
+        </div>
+      </div>
+
+      <hr>
+      <div class="form-row">
+        <div class="form-group ">
+          <button  [disabled]="addForm.form.invalid" class="btn btn-primary" type="submit">Lưu</button>
+        </div>
+        <div class="form-group col-1 ">
+          <button (click)="goBack()" [routerLink]="'/a'" class="btn btn-secondary ">Thoát</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

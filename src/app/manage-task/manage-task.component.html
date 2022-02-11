@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <script src="/node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" defer></script>
+
+</head>
+
+<body>
+  <div class="card">
+    <div class="card-header">
+      <h3 class="text-left">List Notify</h3>
+    </div>
+    <br>
+    <div class="border">
+      <button routerLink="/addnotify" class="btn btn-md btn-outline-primary">
+        <i id="myicon" class="fa fa-plus"></i> New Notify
+      </button>
+    </div>
+    <table class="table" datatable [dtOptions]="dtOptions">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Content</th>
+          <th scope="col">Start</th>
+          <th scope="col">End</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of collection">
+          <td>{{item.id}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.description}}</td>
+          <td>
+            <div [innerHtml]="item.content"></div>
+          </td>
+          <td>{{item.start}}</td>
+          <td>{{item.end}}</td>
+          <td>
+            <i (click)="deleteNotify(item.id)" class="fa fa-trash" style="font-size:17px;color:red;"></i>
+            |
+            <a routerLink="/updatenotify/{{item.id}}">
+              <i class="fas fa-edit" style="font-size:16px;color:rgb(59, 59, 247);"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- POPUP -->
+
+  <ng-template #content let-modal>
+    <div id="popup">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+          Thông Báo
+        </h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true"> × </span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="dateOfBirth">
+              Date of birth
+            </label>
+            <div class="input-group">
+              <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker
+                #dp="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button">
+                  ...
+                </button>
+              </div>
+            </div>
+          </div>
+          <div *ngFor="let item of task">
+            <div *ngIf="task">
+              <div [innerHtml]="item.content"></div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">
+          Đã Xem
+        </button>
+      </div>
+    </div>
+
+  </ng-template>
+  
+  <script>
+    $(document).ready(function () {
+      if (sessionStorage.getItem('#') !== 'true') {
+        $('#').modal('show');
+        sessionStorage.setItem('#', 'true');
+      }
+    });
+  </script>
+
+</body>
+
+</html>
