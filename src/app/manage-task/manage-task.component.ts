@@ -63,6 +63,7 @@ export class ManageTaskComponent implements OnInit {
     this.taskService.deleteNotify(item).subscribe((result)=>{
       console.log(result); 
       alert("Notify Deleted")
+      this.getAllNotify()
     })
   }
   getAllNotify(){
