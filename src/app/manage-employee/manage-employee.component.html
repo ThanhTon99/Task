@@ -1,6 +1,6 @@
-<h2>*Thông Báo*</h2>
-
-<div *ngFor="let item of task">
+<!--<h2>*Thông Báo*</h2>
+{{'todaydate' | greetingsPipe}}<br>
+ <div *ngFor="let item of task">
   <h3>
     <div *ngIf="task">
       <p>Tiêu Đề: {{item.name}}</p>
@@ -10,4 +10,20 @@
     <p><strong>Mô Tả:</strong> {{item.description}}</p> 
     <strong>Nội Dung:</strong> <div [innerHtml]="item.content"></div>
   </div>
+</div> 
+<button (click)="yeucau()">Yeu cau</button>-->
+
+<button (click)="yeucau()">Yeu cau</button>
+<div class="child-comp">
+  <input [(ngModel)]="childTextBoxValue" type="text" class="form-control">
+  <button (click)="passTextValueToParent()" type="button" class="tn btn-info">Send textbox to parent</button>
+
+  <div class="txt">
+    Value of parent textbox : {{parentTextBoxValue}}
+  </div>
+
+  <div class="txt">
+    Parent Click cout: {{clickCount}}
+  </div>
+
 </div>

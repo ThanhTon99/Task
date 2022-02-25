@@ -39,11 +39,12 @@
         <div class="form-group col-md-6">
           <label>Kiểu Hiển Thị</label>
           <select class="form-control">
-            <option>Tin Tức</option>
+            <option [routerLink]="['/updatetask']">Tin Tức</option>
             <option>Thông Báo</option>
             <option>Slide Ảnh</option>
           </select>
         </div>
+        
         <div class="form-group col-md-6">
           <label>Kiểu Thông Báo</label>
           <select class="form-control">
@@ -56,17 +57,15 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label>Bắt Đầu <a id="sao">(*)</a></label>
-          <input type="text" required #start="ngModel" class="form-control" name="start"
+          <input type="date" required #start="ngModel" class="form-control" name="start"
             [class.is-invalid]="start.invalid && start.touched" [(ngModel)]="addModel.start" name="start">
-          <small class="form-text text-danger" [class.d-none]="start.valid || start.untouched">Yêu cầu điền thông
-            tin</small>
+          <small class="form-text text-danger" [class.d-none]="start.valid || start.untouched">Yêu cầu điền thông tin</small>
         </div>
         <div class="form-group col-md-6">
           <label for="name">Kết Thúc <a id="sao">(*)</a></label>
-          <input type="text" required #end="ngModel" class="form-control" name="end"
+          <input type="date" required #end="ngModel" class="form-control" name="end"
             [class.is-invalid]="end.invalid && end.touched" [(ngModel)]="addModel.end" name="end">
-          <small class="form-text text-danger" [class.d-none]="end.valid || end.untouched">Yêu cầu điền thông
-            tin</small>
+          <small class="form-text text-danger" [class.d-none]="end.valid || end.untouched">Yêu cầu điền thông tin</small>
         </div>
       </div>
 
@@ -86,14 +85,16 @@
         <div class="form-group col-md-4">
           <!-- <label for="formFile" class="form-label">Ảnh<input class="form-control" type="file" id="formFile"></label> -->
           <img *ngFor='let url of urls' [src]="url" height="100" width="100"><br>
-          <input type="file" (change)="onselect($event)" multiple >
+          <input type="file" #image="ngModel" class="form-control" name="image"
+          [class.is-invalid]="image.invalid && image.touched" [(ngModel)]="addModel.image"
+          (change)="onselect($event)" multiple  >
         </div>
       </div>
 
       <hr>
       <div class="form-row">
         <div class="form-group ">
-          <button  [disabled]="addForm.form.invalid" class="btn btn-primary" type="submit">Lưu</button>
+          <button [disabled]="addForm.form.invalid" class="btn btn-primary" type="submit">Lưu</button>
         </div>
         <div class="form-group col-1 ">
           <button (click)="goBack()" [routerLink]="'/a'" class="btn btn-secondary ">Thoát</button>

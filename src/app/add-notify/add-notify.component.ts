@@ -25,7 +25,7 @@ export class AddNotifyComponent implements OnInit {
     private taskService: TaskService
     ) { }
   
-  addModel = new Task('','','','','','');
+  addModel = new Task('','','','','','','');
   ngOnInit() {
 
   }

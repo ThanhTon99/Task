@@ -2,9 +2,12 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ManageEmployeeComponent } from './manage-employee/manage-employee.component';
 import { ManageTaskComponent } from './manage-task/manage-task.component';
+import { PopupComponent } from './popup/popup.component';
 import { SignupComponent } from './signup/signup.component';
 import { UpdateNotifyComponent } from './update-notify/update-notify.component';
 import { UpdateTaskComponent } from './update-task/update-task.component';
+
+
 
 const routes: Routes = [
   {path: '',redirectTo: '/login', pathMatch:'full'},
@@ -12,11 +15,14 @@ const routes: Routes = [
   {path: 'updatenotify/:id', component: UpdateNotifyComponent},
   {path: 'manageemployee', component: ManageEmployeeComponent},
   {path: 'updatetask',component: UpdateTaskComponent},
-  {path: 'signup', component: SignupComponent}
+  {path: 'signup', component: SignupComponent},
+  {path: 'popup' , component:PopupComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+
+
 })
 export class AppRoutingModule { }

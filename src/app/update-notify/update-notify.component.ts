@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Task } from '../task';
 import { TaskService } from '../task.service';
@@ -13,24 +13,24 @@ export class UpdateNotifyComponent implements OnInit {
   items : any = []
   alert:boolean = false
   @ViewChild('editForm')
-  editForm!: NgForm;
-  ckeditorContent: string = '';
+  editForm!: NgForm
+  ckeditorContent: string = ''
 
   constructor(
     private taskService: TaskService,
     private router: ActivatedRoute
     ) { }
 
-  editModel= new Task('','','','','','')
+  editModel= new Task('','','','','','','')
      
   ngOnInit():void {
     console.log(this.router.snapshot.params['id'])
     this.taskService.getCurrentTask(this.router.snapshot.params['id']).
     subscribe((result:any)=>{
-      this.editModel= new Task(result['id'],result['name'], result['description'],result['content'],result['start'],result['end'])
+      this.editModel= new Task(result['id'],result['name'], result['description'],
+      result['content'],result['start'],result['end'],result['image'])
       }) 
   }
-
   urls:string[]=[];
   onselect(e:any){
     if(e.target.files){

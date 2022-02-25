@@ -13,8 +13,7 @@ body {
     background-color: #e0ecf5;
     /* background-image: url(./undraw_remotely_2j6y.svg); */
     background-repeat: no-repeat;
-    background-size: 39%;
-    
+    background-size: 39%;  
 }
 .content {
     width: 960px;
@@ -29,7 +28,7 @@ body {
     width: 384px;
     height: 450px;
     position: fixed;
-    right: 3%; 
+    right: 10%; 
     background-color: #2d80ce;
     background-repeat: no-repeat;
     background-size: 100%;
@@ -183,7 +182,8 @@ a {
 }
 @media (min-width: 768px) {
   .card img {
-    height: 25em;
+    height: 35em;
+    
   }
 }
 .btn{
@@ -191,7 +191,7 @@ a {
 }
 #carouselExampleControls{
     position: fixed;  
-    margin-top: 90px;
-    left: 15%;
-    width: 35%;
+    margin-top: 10px;
+    left: 5%;
+    width: 55%;
 }

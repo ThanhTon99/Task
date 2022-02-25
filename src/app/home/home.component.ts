@@ -9,17 +9,13 @@ import {TaskService } from '../task.service';
 })
 export class HomeComponent implements OnInit {
   
-  task:any = [];
 
   constructor(
     private taskService : TaskService,
   ) { }
 
   ngOnInit(): void {
-    this.taskService.getList().subscribe((result)=>{
-      console.warn(result)
-      this.task = result
-    })
+    
   }
   
 }

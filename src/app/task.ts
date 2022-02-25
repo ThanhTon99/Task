@@ -7,6 +7,7 @@ export class Task{
         public description: string,
         public content: string,
         public start: string,
-        public end: string      
+        public end: string,
+        public image: string
     ){}
 }

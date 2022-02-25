@@ -1,33 +1,27 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { TaskService } from './task.service';
+import { TaskService } from '../task.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-popup',
+  templateUrl: './popup.component.html',
+  styleUrls: ['./popup.component.css']
 })
-export class AppComponent implements OnInit {
-  todaydate = new Date()
+export class PopupComponent implements OnInit {
 
-  @ViewChild('content') content : any;
-  task: any = [];
   closeResult = '';
-  collection: any = [];
-  formValue !: FormGroup
-  
+  task: any = [];
   constructor(
+    private taskService: TaskService,
     private modalService: NgbModal,
-    private taskService: TaskService
+
   ) { }
+
   ngOnInit():void {
-    this.taskService.getTask().subscribe((result) => {
-      console.warn(result)
-      this.collection = result
+    this.taskService.getList().subscribe((result) => {
+      console.log(result)
       this.task = result
-      
-      this.open(this.content)
+      //this.open(this.content)
     })
   }
   open(content: any) {
@@ -36,7 +30,7 @@ export class AppComponent implements OnInit {
         this.closeResult = `Closed with: ${result}`;
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      })
+      });
   }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -47,5 +41,4 @@ export class AppComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-
 }

@@ -1,22 +1,26 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit,Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { TaskService } from '../task.service'; 
 import { NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-
-import * as $ from 'jquery'
 import { FormGroup } from '@angular/forms';
+import { Task } from '../task';
+
 @Component({
   selector: 'app-manage-task',
   templateUrl: './manage-task.component.html',
   styleUrls: ['./manage-task.component.css']
 })
+
 export class ManageTaskComponent implements OnInit {
 
-  @ViewChild ('content') content:any; 
+  @Input() product : Task | undefined;
+  @Output() daxemEvent = new EventEmitter<Task>()
+  
+  @ViewChild ('content') content: any; 
   task : any = []; 
   collection : any = [];
-  dtOptions : DataTables.Settings={}; 
+  dtOptions : DataTables.Settings = {}; 
   closeResult = '';
-
+  mgs?:string;
   notifyData !: any
   formValue !: FormGroup
   constructor(
@@ -36,7 +40,7 @@ export class ManageTaskComponent implements OnInit {
       console.warn(result)
       this.collection = result
       this.task = result
-      this.open(this.content)
+      //this.open(this.content)
     })    
   }
   
@@ -71,6 +75,5 @@ export class ManageTaskComponent implements OnInit {
       this.notifyData = res
     })
   }
+  
 }
-
-

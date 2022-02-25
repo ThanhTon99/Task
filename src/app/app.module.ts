@@ -18,6 +18,8 @@ import { DataTablesModule } from 'angular-datatables';
 import { ManageEmployeeComponent } from './manage-employee/manage-employee.component';
 import { UpdateTaskComponent } from './update-task/update-task.component';
 import { SignupComponent } from './signup/signup.component';
+import { GreetingsPipePipe } from './greetings-pipe.pipe';
+import { PopupComponent } from './popup/popup.component';
 
 const routes: Routes =[
   {path: '',redirectTo: '/login', pathMatch:'full'},
@@ -29,7 +31,7 @@ const routes: Routes =[
 ]
 
 @NgModule({
-  declarations: [											
+  declarations: [												
     AppComponent,   
       AddNotifyComponent,  
       NotFoundComponent,
@@ -39,7 +41,9 @@ const routes: Routes =[
       UpdateNotifyComponent,
       ManageEmployeeComponent,
       UpdateTaskComponent,
-      SignupComponent
+      SignupComponent,
+      GreetingsPipePipe,
+      PopupComponent
    ],
   imports: [
     RouterModule,

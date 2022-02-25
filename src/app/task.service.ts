@@ -7,10 +7,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TaskService {
-  [x: string]: any;
 
   url = "http://localhost:3000/task"
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+    ) { }
+
+  getTask() : Observable<Task['content']>{
+    return this.http.get<Task['content']>(this.url)
+  }
+
   getList(){  
     return this.http.get(this.url)
   }

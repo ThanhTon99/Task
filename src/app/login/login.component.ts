@@ -1,10 +1,8 @@
 
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { TaskService } from '../task.service';
-import { Input} from '@angular/core';
-import { Task } from '../task';
-import { Observable } from 'rxjs';
+
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
@@ -40,7 +38,7 @@ export class LoginComponent implements OnInit {
         this.loginForm.reset()
         this.router.navigate(['managetask'])
       }else{
-        alert("User is not found")
+        alert("Username or password is incorrect")
       }
     },err=>{
       alert("Something Wrong !!!")
