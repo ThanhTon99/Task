@@ -24,16 +24,14 @@ import { Subject } from 'rxjs';
 })
 export class ManageEmployeeComponent implements OnInit {
 
-  @Input() product?: String 
-  @Output() daxemEvent = new EventEmitter<String>()
-
   @Input('parentText') parentTextBoxValue?: String;
   @Input() parentClick?: Subject<void>
   @Output('ontextFromChild') passToParent = new EventEmitter<String>()
 
   task: any = [];
   clickCount = 0
-  childTextBoxValue ?: string
+  childTextBoxValue ?: string 
+  
   constructor(
     private taskService: TaskService,
   ) { }
@@ -48,10 +46,6 @@ export class ManageEmployeeComponent implements OnInit {
       this.task = result
     }) 
      this.parentClick?.subscribe(()=> this.incrementValue())
-  }
-
-  yeucau() {
-    this.daxemEvent.emit(this.product)
   }
 
   passTextValueToParent(){

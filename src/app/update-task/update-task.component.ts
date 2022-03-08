@@ -11,7 +11,9 @@ import { Subject } from 'rxjs';
     <div class="controls">
       <h3>My parent Component</h3>
       <input [(ngModel)]="parentTxtValue" type="text" class="form-control">
-      <button (click)="onParentButtonClick()" type="button" class="btn btn-primary">Parent Click</button>
+      <button (click)="onParentButtonClick()" type="button" class="btn btn-primary">
+      Parent Click
+      </button>
       <div class="txt">
         Value of child text box : {{childTextBoxValue}}
       </div>
@@ -19,64 +21,11 @@ import { Subject } from 'rxjs';
     <div class="child">
       <em *ngIf="mgs">{{mgs}}</em>
       <app-manage-employee
-      (daxemEvent)="notifyMessage($event)"
       [parentText]="parentTxtValue"
       [parentClick]="parentClick"
       (ontextFromChild)="updateInChildValue($event)"
       >
       </app-manage-employee>
-    </div>
-  </div>
-  <div class="modal" id="myModal">
-    <ng-template #content let-modal>
-      <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">
-          Thông Báo
-        </h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true"> × </span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="dateOfBirth">
-              Date of birth
-            </label>
-            <div class="input-group">
-              <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker
-                #dp="ngbDatepicker">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button">
-                  ...
-                </button>
-              </div>
-            </div>
-          </div>
-          <div *ngFor="let item of task">
-            <div *ngIf="task">
-              <div [innerHtml]="item.content"></div>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button (click)="onParentButtonClick()" type="button" class="btn btn-primary" (click)="modal.close('Save click')">
-          Đã Xem
-        </button>
-      </div>
-    </ng-template>
-  </div>
-  
-  <div class="popup">
-    <button class="btn btn-lg btn-outline-primary" (click)="open(content)">
-      Chi Tiết
-    </button>
-    <div *ngFor="let item of task">
-      <div *ngIf="task">
-        <h2>Nội Dung.{{item.name}}</h2>
-        <div [innerHtml]="item.content"></div>
-      </div>
     </div>
   </div>
   `,
@@ -129,15 +78,15 @@ export class UpdateTaskComponent implements OnInit {
     }
   }
 
-  notifyMessage(event:any) {
+  notifyMessage(event: any) {
     this.mgs = event
   }
 
-  onParentButtonClick(){
+  onParentButtonClick() {
     this.parentClick.next()
   }
 
-  updateInChildValue(event:any){
+  updateInChildValue(event: any) {
     this.childTextBoxValue = event
   }
 

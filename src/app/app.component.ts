@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
       this.collection = result
       this.task = result
       
-      this.open(this.content)
+     // this.open(this.content)
     })
   }
   open(content: any) {
